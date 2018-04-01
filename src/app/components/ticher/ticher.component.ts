@@ -31,7 +31,7 @@ export class TicherComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('http://127.0.0.1:8000/api/v0/auth-users/get-test/' + this.id + '/').subscribe((response) => {
+    this.http.get('https://demo-ticher.herokuapp.com/api/v0/auth-users/get-test/' + this.id + '/').subscribe((response: any) => {
       this.testData = response.results;
     });
   }
@@ -53,7 +53,7 @@ export class TicherComponent implements OnInit {
   endTest() {
     const result = Object.values(this.test_results);
     if (result.length === this.testData.questions.length) {
-      this.http.post('http://127.0.0.1:8000/api/v0/auth-users/create-test-result/', {
+      this.http.post('https://demo-ticher.herokuapp.com/api/v0/auth-users/create-test-result/', {
         result: result,
         learner: this.loginForm.controls['name'].value
       }).subscribe((res) => {
