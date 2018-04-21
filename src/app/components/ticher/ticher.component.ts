@@ -33,6 +33,19 @@ export class TicherComponent implements OnInit {
   ngOnInit() {
     this.http.get('https://demo-ticher.herokuapp.com/api/v0/auth-users/get-test/' + this.id + '/').subscribe((response: any) => {
       this.testData = response.results;
+      function compare(a, b) {
+        const genreA = a.id;
+        const genreB = b.id;
+
+        let comparison = 0;
+        if (genreA > genreB) {
+          comparison = 1;
+        } else if (genreA < genreB) {
+          comparison = -1;
+        }
+        return comparison;
+      }
+      this.testData.questions.sort(compare);
     });
   }
 
